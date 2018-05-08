@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  remote_user: root 
+  vars:
+    - var1: value
+    
+  tasks:
+  - name: installapache
+    yum:
+      name=httpd
+      state=latest
+  - name: print variable
+    debug: msg="var is {{ var1 }}"
+...

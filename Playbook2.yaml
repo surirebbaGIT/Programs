@@ -1,0 +1,16 @@
+---
+- hosts: group1
+  vars:
+    var1: "Sample var"
+    
+  tasks: 
+  - name: Install common software requirements
+    yum: pkg={{ item }} state=installed
+    with_items:
+      - git
+      - ntp
+      - vim
+  - name: Print var1
+    debug: 
+      msg: "var name - {{ var1 }}"
+...

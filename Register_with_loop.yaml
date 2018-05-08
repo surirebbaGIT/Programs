@@ -1,0 +1,16 @@
+---
+- hosts: group1
+  var: count
+  tasks:
+  - name: Ansible register with_items example
+    shell: "find *.txt"
+    args:
+      chdir: "/opt/"
+    register: with_output
+   - debug:
+      Var: with_output
+  - shell: "cp {{ item }} {{item}}_bkp"
+    args:
+      chdir: "/opt/"
+    with_items:
+      - "{{ with_output.stdout_lines }}"
